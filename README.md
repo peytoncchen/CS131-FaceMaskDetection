@@ -12,3 +12,5 @@ I then decided to take this one step forward by implementing a program to harnes
 
 Here's a screenshot of the live-detection program.
 ![](live-detection.png)
+
+To run training, look at `train.ipynb`. To run the live detection model, use `python3 live_detection.py`. This project was developed in Python 3.8.5 with PyTorch and OpenCV and miscellaneous other dependencies in a Miniconda environment on a M1 Macbook Pro.
