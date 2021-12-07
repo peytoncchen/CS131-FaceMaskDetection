@@ -8,7 +8,6 @@ import numpy as np
 from imutils.video import VideoStream
 import numpy as np
 import imutils
-import cv2
 
 PATH = './face_mask.pth'
 
@@ -80,7 +79,7 @@ def detect_and_predict_mask(frame, faceNet):
 			transform = transforms.Compose([transforms.Resize((150, 150)), 
 							transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),])
 			transformed_img = transform(image)
-			result=model(transformed_img[None, ...])
+			result = model(transformed_img[None, ...])
 			preds.append(int(torch.round(result)))
 
 	return (locs, preds)
@@ -95,7 +94,7 @@ while True:
 	for (box, pred) in zip(locs, preds):
 		(startX, startY, endX, endY) = box
 		label = "Mask" if pred == 0 else "No Mask"
-		
+
 		color = (0, 255, 0) if pred == 0 else (0, 0, 255)
 
 		cv2.putText(frame, label, (startX, startY - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
